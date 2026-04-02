@@ -1,0 +1,52 @@
+{
+  "os": {
+    "name": "Potato-OS",
+    "version": "3.0.0",
+    "build": "TUBER-GOLD-2025"
+  },
+  "browser_shortcuts": [
+    { "label": "SpudSearch", "icon": "fas fa-search",       "url": "https://duckduckgo.com",      "color": "#f5a623" },
+    { "label": "TuberPedia", "icon": "fas fa-book",         "url": "https://en.wikipedia.org",    "color": "#56d364" },
+    { "label": "SpudHub",    "icon": "fab fa-github",       "url": "https://github.com",          "color": "#c9d1d9" },
+    { "label": "FryTube",    "icon": "fas fa-play-circle",  "url": "https://youtube.com",         "color": "#ff4444" },
+    { "label": "HashChat",   "icon": "fab fa-reddit-alien", "url": "https://reddit.com",          "color": "#ff6314" },
+    { "label": "BakedCode",  "icon": "fas fa-code",         "url": "https://vscode.dev",          "color": "#007acc" }
+  ],
+  "boot_messages": [
+    { "text": "Tilling the soil...",               "icon": "🌍" },
+    { "text": "Planting Yukon Gold seeds...",      "icon": "🥔" },
+    { "text": "Irrigating the field...",           "icon": "💧" },
+    { "text": "Monitoring crop sensors...",        "icon": "📡" },
+    { "text": "Growth at 48%...",                  "icon": "🌿" },
+    { "text": "Harvest season — digging up...",   "icon": "⛏️" },
+    { "text": "Sorting Grade-A spuds...",          "icon": "✅" },
+    { "text": "Bagging and tagging...",            "icon": "🏷️" },
+    { "text": "Loading onto export trucks...",     "icon": "🚚" },
+    { "text": "Export complete — BOOTING!",        "icon": "🚀" }
+  ],
+  "music_sections": [
+    {
+      "title": "Indie Chill",
+      "tracks": [
+        { "title": "Babydoll",       "artist": "Dominic Fike",   "id": "2tznHmp70DxMyr2xcFEzoE", "hue": 30  },
+        { "title": "Duvet",          "artist": "bôa",            "id": "5Ar8SHDa80JAhRHPMzDrQd", "hue": 210 },
+        { "title": "3 Nights",       "artist": "Dominic Fike",   "id": "4RU8XfJ0fPKzUPOqTFaTBF", "hue": 270 },
+        { "title": "Gilded Lily",    "artist": "Cults",          "id": "6OmhkSOpvYBokMKQxpIGx2", "hue": 150 },
+        { "title": "Safe and Sound", "artist": "Capital Cities", "id": "6zNPBKdC0JCxAMfpvKt4h9", "hue": 330 },
+        { "title": "Young Blood",    "artist": "Noah Kahan",     "id": "6KDSMJF8kgBnJX5wHIHwPP", "hue": 50  },
+        { "title": "Linger",         "artist": "Royel Otis",     "id": "5O2P9iiztwhomSR9lqTKDm", "hue": 190 }
+      ]
+    },
+    {
+      "title": "Hip-Hop",
+      "tracks": [
+        { "title": "HUMBLE.",       "artist": "Kendrick Lamar", "id": "7KXjTSCq5nL1LoYtL7XAwS", "hue": 260 },
+        { "title": "goosebumps",    "artist": "Travis Scott",   "id": "6PQ88X9TkUIAUIZJHW2upE", "hue": 330 },
+        { "title": "Sicko Mode",    "artist": "Travis Scott",   "id": "2xLMifQCjDGFmkHkpNLD9h", "hue": 200 },
+        { "title": "Mask Off",      "artist": "Future",         "id": "7rWf2nomEJCGFKBdGxEkTE", "hue": 140 },
+        { "title": "XO TOUR Llif3", "artist": "Lil Uzi Vert",  "id": "7nN3GEjB45qlmLDFVJtJdz", "hue": 20  },
+        { "title": "Industry Baby", "artist": "Lil Nas X",     "id": "5Z01UMMf7V1o0MzF86s6WJ", "hue": 100 }
+      ]
+    }
+  ]
+}
