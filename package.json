@@ -22,6 +22,5 @@
     "potato-os",
     "browser-os"
   ],
-  "license": "MIT",
-  "type": "module"
+  "license": "MIT"
 }
