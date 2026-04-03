@@ -8,14 +8,9 @@ const Spudify = (() => {
     el.style.cssText = "width:100%;height:100%;position:relative;background:#000;overflow:hidden";
     el.innerHTML = `
       <style>
-        #sp-shell { width:100%;height:100%;display:flex;flex-direction:column;background:#0a0a0a;font-family:'Space Grotesk',system-ui,sans-serif; }
-        #sp-bar { height:42px;background:rgba(0,0,0,0.85);border-bottom:1px solid rgba(29,185,84,0.18);display:flex;align-items:center;padding:0 14px;gap:11px;flex-shrink:0;backdrop-filter:blur(10px);z-index:10; }
-        #sp-bar-logo { display:flex;align-items:center;gap:9px; }
-        #sp-bar-logo img { width:24px;height:24px;border-radius:50%; }
-        #sp-bar-logo span { font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:#1DB954;letter-spacing:2px; }
-        #sp-bar-open { margin-left:auto;background:#1DB954;border:none;color:#000;padding:5px 15px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.2s;letter-spacing:0.5px; }
-        #sp-bar-open:hover { background:#1ed760;transform:scale(1.04); }
-        #sp-iframe-wrap { flex:1;position:relative;overflow:hidden; }
+        #sp-shell { width:100%;height:100%;position:relative;background:#0a0a0a;font-family:'Space Grotesk',system-ui,sans-serif; }
+
+        #sp-iframe-wrap { width:100%;height:100%;position:relative;overflow:hidden; }
         #sp-iframe {
           position:absolute;inset:0;width:100%;height:100%;border:none;
           opacity:0;transition:opacity 1.4s cubic-bezier(0.4,0,0.2,1);
@@ -46,15 +41,7 @@ const Spudify = (() => {
       </style>
 
       <div id="sp-shell">
-        <div id="sp-bar">
-          <div id="sp-bar-logo">
-            <img src="img/spotify.webp" alt="">
-            <span>SPUDIFY</span>
-          </div>
-          <button id="sp-bar-open" onclick="window.open('${SPOTIFY_URL}','_blank')">
-            Open Full ↗
-          </button>
-        </div>
+
         <div id="sp-iframe-wrap">
           <div id="sp-loader">
             <div id="sp-loader-disk"><img src="img/spotify.webp" alt=""></div>
