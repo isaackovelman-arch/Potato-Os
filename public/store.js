@@ -76,9 +76,12 @@ const SpudStore = (() => {
 
     let html = null;
     // Try server-side endpoint first, then CDN directly
+    // GN-Math games have varied URL patterns - try all known ones
     const tries = [
       `/game?id=${id}`,
-      `${HTML}/${id}.html`,
+      `https://cdn.jsdelivr.net/gh/gn-math/html@main/${id}.html`,
+      `https://cdn.jsdelivr.net/gh/gn-math/html@latest/${id}.html`,
+      `https://raw.githubusercontent.com/gn-math/html/main/${id}.html`,
     ];
     for(const url of tries){
       try{
@@ -362,10 +365,19 @@ const SpudStore = (() => {
   }
 
   function search(q){
-    const grid = document.getElementById("ss-all-grid");
-    if(!grid) return;
-    const hits = q ? games.filter(g => g.name.toLowerCase().includes(q.toLowerCase())) : games;
-    grid.innerHTML = hits.map(g => storeCard(g)).join("");
+    const allGrid   = document.getElementById("ss-all-grid");
+    const trendGrid = document.getElementById("ss-trend-grid");
+    if(!allGrid) return;
+    const hits = q
+      ? games.filter(g => g.name.toLowerCase().includes(q.toLowerCase()))
+      : games;
+    allGrid.innerHTML = hits.map(g => storeCard(g)).join("");
+    if(trendGrid && q) {
+      trendGrid.innerHTML = hits.slice(0,7).map(g => storeCard(g)).join("");
+    } else if(trendGrid && !q) {
+      const trending = [...games].sort(() => Math.random()-.5).slice(0,14);
+      trendGrid.innerHTML = trending.map(g => storeCard(g)).join("");
+    }
   }
 
   /* ══ BUILD ══════════════════════════════════════════ */
@@ -408,7 +420,7 @@ const SpudStore = (() => {
     .ss-nav-link:hover{color:#fff}.ss-nav-link.active{color:#fff;border-bottom-color:#fff}
     .ss-nav-r{margin-left:auto;display:flex;align-items:center;gap:14px;color:rgba(255,255,255,0.45);font-size:14px}
     #ss-clock{font-weight:700;color:#fff}
-    #ss-view-area{flex:1;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.12) transparent}
+    #ss-view-area{flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.12) transparent;position:relative}
     /* Loading */
     .ss-loading{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:14px;color:rgba(255,255,255,0.35);text-align:center;padding:20px}
     .ss-loading p{font-size:13px}.ss-loading-spin{font-size:44px}
@@ -459,8 +471,8 @@ const SpudStore = (() => {
     .ss-lib-card.sel{border-color:#fff!important}
     .ss-lib-card img{width:100%;height:100%;object-fit:cover;display:block;background:#1a1a1a}
     /* Play Store */
-    .ss-store{padding-bottom:40px}
-    .ss-store-top{display:grid;grid-template-columns:1fr 360px;height:270px;margin-bottom:28px}
+    .ss-store{padding-bottom:40px;min-height:100%}
+    .ss-store-top{display:grid;grid-template-columns:1fr 360px;height:270px;margin-bottom:28px;flex-shrink:0}
     .ss-feat{position:relative;background-size:cover;background-position:center;overflow:hidden;display:flex;align-items:flex-end}
     .ss-feat-ov{position:absolute;inset:0;background:linear-gradient(to right,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.4) 60%,transparent 100%)}
     .ss-feat-body{position:relative;z-index:2;padding:26px 30px;max-width:460px}
