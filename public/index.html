@@ -10,72 +10,95 @@
 <link rel="stylesheet" href="boot.css">
 <link rel="stylesheet" href="apps.css">
 <style>
-/* ── App Launch Splash Overlay ─────────────────────── */
+/* ══════════════════════════════════════════════════════
+   APP LAUNCH SPLASH  —  CineOS style
+   Full black screen · big icon · massive name · fade out
+   ══════════════════════════════════════════════════════ */
 #app-splash {
-  position: fixed; inset: 0;
-  z-index: 2000;
-  display: flex; align-items: center; justify-content: center;
-  pointer-events: none;
-  opacity: 0;
+  position: fixed; inset: 0; z-index: 2000;
+  background: #000;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 0;
+  pointer-events: none; opacity: 0;
 }
 #app-splash.active {
   pointer-events: auto;
-  animation: splashAnim 2.8s cubic-bezier(0.22,1,0.36,1) forwards;
+  animation: splashFull 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
-@keyframes splashAnim {
-  0%   { opacity: 0; }
-  10%  { opacity: 1; }
-  65%  { opacity: 1; }
-  100% { opacity: 0; }
+@keyframes splashFull {
+  0%          { opacity: 0; }
+  8%          { opacity: 1; }
+  70%         { opacity: 1; }
+  100%        { opacity: 0; }
 }
-#app-splash-bg {
-  position: absolute; inset: 0;
-  background: #000;
-  opacity: 0;
-  transition: none;
-}
-#app-splash.active #app-splash-bg { opacity: 1; }
-#app-splash-content {
-  position: relative; z-index: 2;
-  display: flex; flex-direction: column; align-items: center; gap: 22px;
-}
+
+/* Big app icon */
 #app-splash-icon {
-  width: 96px; height: 96px; border-radius: 22px;
-  overflow: hidden; display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 0 60px rgba(212,168,83,0.25);
-  animation: splashIcon 2.8s cubic-bezier(0.22,1,0.36,1) forwards;
+  width: 110px; height: 110px;
+  border-radius: 26px; overflow: hidden;
+  margin-bottom: 32px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 20px 60px rgba(0,0,0,0.8);
+  animation: splashIconAnim 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
-@keyframes splashIcon {
-  0%   { transform: scale(0.6); opacity: 0; }
-  18%  { transform: scale(1.06); opacity: 1; }
-  28%  { transform: scale(1); }
-  70%  { transform: scale(1); opacity: 1; }
-  100% { transform: scale(1.1); opacity: 0; }
+@keyframes splashIconAnim {
+  0%   { transform: scale(0.75) translateY(12px); opacity: 0; }
+  14%  { transform: scale(1.03) translateY(0);    opacity: 1; }
+  22%  { transform: scale(1)    translateY(0);    opacity: 1; }
+  72%  { transform: scale(1)    translateY(0);    opacity: 1; }
+  100% { transform: scale(1.05) translateY(-6px); opacity: 0; }
 }
-#app-splash-icon img { width: 100%; height: 100%; object-fit: cover; }
+#app-splash-icon img { width:100%; height:100%; object-fit:cover; display:block; }
+
+/* App name — huge, like CineOS */
 #app-splash-name {
   font-family: 'Orbitron', monospace;
-  font-size: 1.6rem; font-weight: 900;
-  color: #fff; letter-spacing: 8px; text-transform: uppercase;
-  animation: splashName 2.8s cubic-bezier(0.22,1,0.36,1) forwards;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1;
+  margin-bottom: 14px;
+  animation: splashNameAnim 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
-@keyframes splashName {
-  0%   { opacity: 0; letter-spacing: 18px; transform: translateY(10px); }
-  22%  { opacity: 1; letter-spacing: 8px; transform: translateY(0); }
-  68%  { opacity: 1; }
-  100% { opacity: 0; }
+@keyframes splashNameAnim {
+  0%   { opacity: 0; letter-spacing: 0.5em; filter: blur(8px); }
+  16%  { opacity: 1; letter-spacing: 0.18em; filter: blur(0); }
+  70%  { opacity: 1; filter: blur(0); }
+  100% { opacity: 0; filter: blur(4px); }
 }
+
+/* Tagline under name */
 #app-splash-sub {
   font-family: 'Space Mono', monospace;
-  font-size: 11px; color: rgba(212,168,83,0.6); letter-spacing: 3px;
-  animation: splashSub 2.8s cubic-bezier(0.22,1,0.36,1) forwards;
+  font-size: 11px;
+  color: rgba(255,255,255,0.32);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  animation: splashSubAnim 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
-@keyframes splashSub {
-  0%,15% { opacity: 0; }
-  30%    { opacity: 1; }
-  68%    { opacity: 1; }
+@keyframes splashSubAnim {
+  0%,18% { opacity: 0; transform: translateY(6px); }
+  30%    { opacity: 1; transform: translateY(0); }
+  70%    { opacity: 1; }
   100%   { opacity: 0; }
 }
+
+/* Thin line below name, animates width */
+#app-splash-line {
+  width: 0; height: 1px;
+  background: rgba(255,255,255,0.2);
+  margin-bottom: 14px;
+  animation: splashLine 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes splashLine {
+  0%,12% { width: 0; opacity: 0; }
+  28%    { width: 120px; opacity: 1; }
+  70%    { width: 120px; opacity: 1; }
+  100%   { width: 0; opacity: 0; }
+}
+
 /* ── Window fade-in ────────────────────────────────── */
 .window { transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.19,1,0.22,1); }
 .window.active { animation: winIn 0.35s cubic-bezier(0.19,1,0.22,1); }
@@ -92,12 +115,10 @@
 
 <!-- ══ APP LAUNCH SPLASH ══ -->
 <div id="app-splash">
-  <div id="app-splash-bg"></div>
-  <div id="app-splash-content">
-    <div id="app-splash-icon"><img id="app-splash-img" src="" alt=""></div>
-    <div id="app-splash-name">APP</div>
-    <div id="app-splash-sub">Loading...</div>
-  </div>
+  <div id="app-splash-icon"><img id="app-splash-img" src="" alt=""></div>
+  <div id="app-splash-name">APP</div>
+  <div id="app-splash-line"></div>
+  <div id="app-splash-sub">Loading...</div>
 </div>
 
 <!-- ══ BACKGROUND ══ -->
